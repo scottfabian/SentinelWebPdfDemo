@@ -1,0 +1,40 @@
+﻿@rendermode InteractiveServer
+
+@inject Cart Cart
+@inject ProductRepository ProductRepository
+
+
+<div class="product-card" id="@ProductName">
+    <div class="product-logo-container"><img src="@($"../src/{ImageName}")" alt="Product Logo" class="product-logo"></div>
+    <p class="product-description">Product Description</p>
+    <button class="product-btn clickable" type="button" @onclick="AddToCartEvent">Add to Cart</button>
+</div>
+
+@code {
+    [Parameter]
+    public string ProductSku { get; set; } = "Default Sku";
+    [Parameter]
+    public string ProductName { get; set; } = "Product Name";
+    [Parameter]
+    public string ImageName { get; set; } = "teklynx.jpg";
+    [Parameter]
+    public string ProductDescription { get; set; } = "Default Product Description";
+    [Parameter]
+    public string ButtonText { get; set; } = "Default Btn Text";
+
+    private async Task AddToCartEvent()
+    {
+        Product? productToAdd = ProductRepository.GetProductBySku(ProductSku);
+
+        if (productToAdd is null)
+        {
+            productToAdd = await ProductRepository.GetProductBySkuAsync(ProductSku);
+        }
+
+        if (productToAdd is not null)
+        {
+            Cart.AddItem(productToAdd, 1);
+        }
+
+    }
+}

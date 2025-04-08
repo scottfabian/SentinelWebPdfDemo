@@ -1,0 +1,61 @@
+﻿/* || GENERAL */
+.clickable{
+    cursor: pointer;
+}
+
+/* ... */
+
+
+/* || Product Card */
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+    width: 160px;
+    height: 180px;
+    background: #F0F0F0;
+    border-radius: 15px;
+}
+
+.product-logo {
+    width: 120px;
+}
+
+.product-description {
+    font-size: medium;
+    text-align: center;
+    font-family: "Open Sans Condensed", sans-serif;
+}
+
+.product-btn {
+    /* ProductActionButton */
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+    position: relative;
+    width: 100px;
+    height: 40px;
+    background: linear-gradient(180deg, rgba(217, 38, 59, 0.4) 0%, rgba(120, 120, 125, 0.4) 100%);
+    border-radius: 10px;
+    text-align: center;
+    font-family: "Open Sans Condensed", sans-serif;
+    font-size: 15px;
+}
+
+.product-cards-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    gap: 20px; /* spacing between cards */
+    padding: 20px;
+}
+
+/* … */
+

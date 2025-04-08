@@ -1,0 +1,33 @@
+﻿@page "/products"
+@attribute [StreamRendering]
+
+@inject ProductRepository ProductRepository
+
+<h3>Products</h3>
+
+<div class="product-cards-container">
+
+@if (products is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    foreach (var product in products)
+    {
+        <ProductCard ImageName="@product.ImageName" ButtonText="Add To Cart" ProductDescription="@product.ProductDescription" ProductName="@product.ProductName" ProductSku="@product.ProductSku"/> 
+    }
+}
+
+</div>
+
+@code {
+    private Product[] products;
+
+    protected override async Task OnInitializedAsync()
+    {
+        products = (await ProductRepository.GetAllProducts())
+        .OrderBy(p => p.IsEnterprise)
+        .ToArray();
+    }
+}

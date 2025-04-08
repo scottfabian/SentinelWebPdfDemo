@@ -1,0 +1,126 @@
+.product-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+    width: 144px;
+    height: 164px;
+    background: #F0F0F0;
+    border-radius: 15px;
+}
+
+.product-logo{
+    width: 120px;
+}
+
+.product-description{
+    font-size: medium;
+    text-align: center;
+}
+
+.product-btn{
+    /* ProductActionButton */
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+
+    position: relative;
+    width: 92px;
+    height: 36px;
+
+    background: linear-gradient(180deg, rgba(217, 38, 59, 0.4) 0%, rgba(120, 120, 125, 0.4) 100%);
+    border-radius: 10px;
+
+}
+
+
+.navbar {
+    background: radial-gradient(554.24% 176.88% at 26.65% 92.13%, #78787D 2.34%, #D9263B 51.77%);
+    display: flex;
+    flex-direction: column;
+}
+
+
+.navbar-image {
+    height: 30px;
+    padding-right: 10px;
+}
+
+.navbar-item {
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 5px;
+    color: white !important;
+    
+    border: 3px solid transparent;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.top-row {
+    height: 3.5rem;
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #d6d5d5;
+    justify-content: flex-end;
+    height: 86.5px;
+    display: flex;
+    align-items: center;
+    background: red;
+
+}
+
+
+
+
+
+.navbar-item:hover {
+    /* background: #CA9090; */
+    background: transparent;
+    border: 3px solid #C6ADAD;
+    border-radius: 10px;
+    color: white !important;
+}
+
+.navbar-item:active {
+    background: #958E8E;
+    border-radius: 10px;
+    color: white !important;
+}
+
+.navbar-items-container {
+    /* MainSidebarContainer */
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 21px 22px;
+    gap: 10px;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    top: 93px;
+}
+
+.logo {
+    width: 100%;
+}
+
+.logo-container {
+    /* TeklynxLogoContainer */
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+}

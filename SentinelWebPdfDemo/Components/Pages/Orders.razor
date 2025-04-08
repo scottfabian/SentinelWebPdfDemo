@@ -1,0 +1,33 @@
+﻿@page "/orders"
+
+<h3>Orders</h3>
+
+<div class="body-container">
+    <table class="order-table">
+        <thead>
+            <tr class="table-header">
+                <th>Order Number</th>
+                <th>Order Total</th>
+                <th>Order Date</th>
+                <th>SKU List</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in ordersRepository.OrderListWithLines)
+            {
+                <tr>
+                    <td>@order.OrderNumber</td>
+                    <td>@order.TotalCost.ToString("C")</td>
+                    <td>@order.OrderDate.ToString("d MMM yyyy")</td>
+                    <td>@(string.Join(", ", order.SkuList!))</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
+@code {
+    private OrdersRepository ordersRepository = new();
+}
