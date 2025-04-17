@@ -1,0 +1,27 @@
+﻿@rendermode InteractiveServer
+@inject SentinelApiFactory SentinelApiFactory
+@inject IJSRuntime jsRuntime
+@inject IConfiguration config
+
+<tr>
+    <td>@OrderDetails.OrderNumber</td>
+    <td>@OrderDetails.TotalCost.ToString("C")</td>
+    <td>@OrderDetails.OrderDate.ToString("d MMM yyyy")</td>
+    <td>@(string.Join(", ", OrderDetails.SkuList!))</td>
+    <td class="hover-click">
+        <div class="clickable">
+            <img src="../src/checklist.png" alt="packList" style="height: 25px;" @onclick="PackListNewTab">
+        </div>
+    </td>
+</tr>
+
+@code {
+    [Parameter]
+    public required OrderWithDetails OrderDetails { get; set; }
+
+    private async Task PackListNewTab()
+    {
+        string packlistSuffix = config["PDFContext:PacklistSuffix"]!;
+        await jsRuntime.InvokeVoidAsync("open", $"api/pdf/{OrderDetails.OrderNumber}{packlistSuffix}.pdf", "_blank");
+    }
+}

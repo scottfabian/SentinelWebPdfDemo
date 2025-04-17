@@ -18,4 +18,6 @@ public class Cart
     {
         CartItems.RemoveAt(itemIdx);
     }
+
+    public void EmptyCart() => CartItems.Clear();
 }

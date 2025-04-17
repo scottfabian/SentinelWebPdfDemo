@@ -185,7 +185,39 @@ public class OrdersRepository
 
 
     #region DELETE
+    public async Task DeleteOrderByNumberAsync(string orderNumber)
+    {
+        string deleteDetailsQuery = $"DELETE FROM OrderDetails WHERE OrderNumber = '{orderNumber}'";
+        string deleteOrdersQuery = $"DELETE FROM Orders WHERE OrderNumber = '{orderNumber}'";
 
+        using (var sqlConn = _createConnection())
+        {
+            await sqlConn.OpenAsync();
+
+            await sqlConn.QueryAsync(deleteDetailsQuery);
+
+            await sqlConn.QueryAsync(deleteOrdersQuery);
+
+            await sqlConn.CloseAsync();
+        }
+    }
+
+    public async Task DeleteAllOrdersAsync()
+    {
+        string deleteDetailsQuery = "DELETE FROM OrderDetails";
+        string deleteOrdersQuery = "DELETE FROM Orders";
+
+        using (var sqlConn = _createConnection())
+        {
+            await sqlConn.OpenAsync();
+
+            await sqlConn.QueryAsync(deleteDetailsQuery);
+
+            await sqlConn.QueryAsync(deleteOrdersQuery);
+
+            await sqlConn.CloseAsync();
+        }
+    }
     #endregion DELETE
 
 }

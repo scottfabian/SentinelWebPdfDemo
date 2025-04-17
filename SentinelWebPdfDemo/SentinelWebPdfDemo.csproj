@@ -16,6 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\My Libraries\FabToolKit\FabToolKit\FabToolKit.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Update="wwwroot\css\styles.css">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>

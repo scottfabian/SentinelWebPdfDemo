@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="SentinelWebPdfDemo.styles.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/defaults.css">
     <title>TESTING</title></head>
 
 <body><div class="page" b-x63vaxzilv=""><div class="sidebar" b-x63vaxzilv=""><div class="navbar" b-1i6ufgym1c=""><div class="logo-container" b-1i6ufgym1c=""><img src="../src/Teklynx.jpg" alt="" class="logo" b-1i6ufgym1c=""></div>
@@ -19,9 +20,44 @@
             Products
         </a></div></div></div>
 
-    <main b-x63vaxzilv=""><div class="top-row" b-x63vaxzilv=""></div>
+    <main b-x63vaxzilv="">
+        <div class="top-row" b-x63vaxzilv="">
+            <div class="cart-parent">
+                <div class="checkout-button clickable">Check Out</div>
+                <div class="cart-image-container">
+                    <img class="cart-image" src="../src/shoppingCartBlack.png" alt="shopping cart">
+                </div>
+            </div>       
+        </div>
 
-        <article class="content" b-x63vaxzilv="">
+        <article class="content"><!--bl:14--><h3>Orders</h3>
+            <div class="body-container">
+                <table class="order-table">
+                    <thead>
+                        <tr class="table-header">
+                            <th>Order Number</th>
+                            <th>Order Total</th>
+                            <th>Order Date</th>
+                            <th>SKU List</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ORD0161200</td>
+                            <td>$18.00</td>
+                            <td>16 Apr 2025</td>
+                            <td>TKCENTRAL, CSENT, SNDEX5</td>
+                            <td class="hover-click">
+                                <div class="clickable">
+                                    <img src="../src/checklist.png" alt="packList" style="height: 25px;">
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div><!--/bl:14-->
+        </article>
 
 <h1>Hello, world!</h1>
 

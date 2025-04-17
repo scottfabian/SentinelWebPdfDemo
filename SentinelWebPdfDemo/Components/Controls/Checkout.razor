@@ -1,0 +1,65 @@
+﻿@inject Cart Cart
+@inject OrdersRepository OrdersRepository
+@inject SentinelApiFactory apiFactory
+@inject IConfiguration config
+@rendermode InteractiveServer
+
+<div class="cart-parent">
+    <div class="checkout-button clickable" @onclick="FillOrder">Check Out</div>
+    <div class="cart-image-container">
+        <img class="cart-image" src="../src/shoppingCartBlack.png" alt="shopping cart">
+    </div>
+</div>
+
+@code {
+    private async Task FillOrder()
+    {
+        string orderNumber = "ORD" + DateTime.Now.ToString("mmddhhmm");
+        int orderCost = Cart.CartItems.Sum(item => item.Quantity * item.Product.ListPrice);
+
+        Order newOrder = new()
+        {
+            OrderNumber = orderNumber,
+            OrderDate = DateTime.Today,
+            TotalCost = orderCost,
+            CustomerID = 1
+        };
+
+        string[] skuList = Cart.CartItems.Select(item => item.Product.ProductSku).ToArray();
+
+        await OrdersRepository.InsertOrder(newOrder, skuList);
+
+        await GeneratePackList(newOrder);
+
+        Cart.EmptyCart();
+    }
+
+    private async Task GeneratePackList(Order order)
+    {
+        var api = apiFactory.GetClient(ActionType.Print);
+
+        //get label to print details
+        string baseLabelDirectory = config["LabelContext:LabelDirectory"]!;
+        string labelName = config["LabelContext:PacklistLabel"]!;
+        string fullLabelFilePath = Path.Combine(baseLabelDirectory, labelName);
+
+        //get PDF output details
+        string basePDFDirectory = config["PDFContext:SentinelOutputDirectory"]!;
+        string packlistSuffix = config["PDFContext:PacklistSuffix"]!;
+        string pdfFileName = $"{order.OrderNumber}{packlistSuffix}.pdf";
+        string pdfFullFilePath = Path.Combine(basePDFDirectory, pdfFileName);
+
+        //get printer from config
+        string defaultPrinter = config["LabelContext:DefaultPrinter"]!;
+
+        //set label variables
+        Dictionary<string, object> labVars = new() { { "OrderNumber", order.OrderNumber} };
+
+        //create sentinel job
+        PostJobDTO[] sentinelJob = [new(labelName: fullLabelFilePath, printerName: defaultPrinter, printQuantity: 1, labVars: labVars, pdfPath: pdfFullFilePath)];
+
+        string response = await api.PostJobAsync(sentinelJob);
+
+
+    }
+}
